@@ -1,0 +1,15 @@
+.admindrawer {
+  width: 18vw;
+}
+
+.drawericons {
+  width: 24px;
+}
+
+.tagUnclicked {
+  color: red;
+}
+
+.tagClicked {
+  color: #0a47c4;
+}

@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+.MuiDataGrid-menuIcon,
+.MuiDataGrid-sortIcon,
+.MuiSvgIcon-fontSizeSmall {
+  display: none !important;
+}
+
+.adminfont {
+  font-family: "Poppins" !important;
+  font-weight: 200 !important;
+}
+
+.MuiCheckbox-root {
+  color: #c2cfe0 !important;
+}
+
+.MuiCheckbox-colorPrimary.Mui-checked,
+.PrivateSwitchBase-input-7 {
+  color: #0a47c4 !important;
+}
+
+.MuiDataGrid-row {
+  cursor: pointer;
+}
+
+.MuiDataGrid-cell:hover,
+.MuiDataGrid-cell:active,
+.MuiDataGrid-cell:focus {
+  outline: none !important;
+}
+
+.MuiDataGrid-row.Mui-selected {
+  background-color: #f2f9ff !important;
+}
+
+.MuiDataGrid-cellRight {
+  text-align: left !important;
+  color: #323c47;
+}
+
+.MuiDataGrid-root .MuiDataGrid-colCellRight .MuiDataGrid-colCellTitleContainer {
+  justify-content: flex-start !important;
+}
+
+.MuiDataGrid-cellLeft,
+.MuiDataGrid-colCellTitle {
+  color: #707683;
+}
