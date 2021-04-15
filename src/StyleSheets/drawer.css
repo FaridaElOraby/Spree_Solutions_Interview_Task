@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
 .admindrawer {
   width: 18vw;
 }
@@ -7,9 +9,18 @@
 }
 
 .tagUnclicked {
-  color: red;
+  color: black;
 }
 
 .tagClicked {
   color: #0a47c4;
+}
+
+.adminlogo {
+  width: 33px;
+}
+
+.adminprofiletable {
+  width: 18vw;
+  font-family: "Poppins" !important;
 }

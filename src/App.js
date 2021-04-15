@@ -1,5 +1,5 @@
 import "./App.css";
-import AdminCard from "./Components/Drawer";
+import AdminCard from "./Pages/adminPage";
 function App() {
   return (
     <div className="App">
