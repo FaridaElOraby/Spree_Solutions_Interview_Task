@@ -2,18 +2,27 @@
 
 .admindrawer {
   width: 18vw;
+  font-family: "Poppins" !important;
+  font-size: 13px !important;
 }
 
 .drawericons {
   width: 24px;
+  margin-right: 5px;
 }
 
 .tagUnclicked {
   color: black;
+  font-family: "Poppins" !important;
+  font-size: 13px !important;
+  text-align: start !important;
 }
 
 .tagClicked {
   color: #0a47c4;
+  font-family: "Poppins" !important;
+  font-size: 13px !important;
+  text-align: start !important;
 }
 
 .adminlogo {
@@ -23,4 +32,28 @@
 .adminprofiletable {
   width: 18vw;
   font-family: "Poppins" !important;
+}
+/* 
+.pcOnly {
+  display: none;
+} */
+
+.mobileOnly {
+  display: none;
+}
+
+.MuiAccordionSummary-root.Mui-expanded {
+  min-height: unset !important;
+}
+.MuiAccordionSummary-content.Mui-expanded {
+  margin: 12px 0px !important;
+}
+
+.requestsicons {
+  width: 8px;
+  margin-right: 5px;
+}
+
+.MuiAccordionDetails-root {
+  padding: 0px 40px 16px !important;
 }

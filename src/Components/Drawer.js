@@ -5,12 +5,27 @@ import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import "../StyleSheets/drawer.css";
-import boxes from "../Images/boxes.png";
-import dashboard from "../Images/dashboard.png";
-import orders from "../Images/orders.png";
+
+import boxesUnclicked from "../Images/boxes.png";
+import boxesClicked from "../Images/boxesClicked.png";
+
+import dashboardUnclicked from "../Images/dashboard.png";
+import dashboardClicked from "../Images/dashboardClicked.png";
+
+import ordersUnclicked from "../Images/orders.png";
+import ordersClicked from "../Images/ordersClicked.png";
+
 import requestsClicked from "../Images/requestsClicked.png";
-import requestsUnclicked from "../Images/requestsUnclicked.png";
-import users from "../Images/users.png";
+import requestsUnclicked from "../Images/requests.png";
+
+import usersUnclicked from "../Images/users.png";
+import usersClicked from "../Images/usersClicked.png";
+
+import settingsUnclicked from "../Images/settings.png";
+import settingsClicked from "../Images/settingsClicked.png";
+
+import active from "../Images/active_circle.png";
+import completed from "../Images/completed_circle.png";
 
 const Accordion = withStyles({
   root: {
@@ -54,7 +69,7 @@ const AccordionDetails = withStyles((theme) => ({
 }))(MuiAccordionDetails);
 
 export default function CustomizedAccordions() {
-  const [expanded, setExpanded] = React.useState("panel2");
+  const [expanded, setExpanded] = React.useState("");
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -64,130 +79,329 @@ export default function CustomizedAccordions() {
     <div className="admindrawer">
       <Accordion
         square
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
+        expanded={expanded === "dashboard"}
+        onChange={handleChange("dashboard")}
       >
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
           <Typography>
-            {expanded === "panel1" ? (
+            {expanded === "dashboard" ? (
               <div className="tagClicked">
-                <img src={dashboard} alt="" className="drawericons" />
-                Dashboard{" "}
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        {" "}
+                        <img
+                          src={dashboardClicked}
+                          alt=""
+                          className="drawericons"
+                        />
+                      </td>
+                      <td>Dashboard</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             ) : (
               <div className="tagUnclicked">
                 {" "}
-                <img src={dashboard} alt="" className="drawericons" />
-                Dashboard{" "}
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        {" "}
+                        <img
+                          src={dashboardUnclicked}
+                          alt=""
+                          className="drawericons"
+                        />
+                      </td>
+                      <td>Dashboard</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             )}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>1</Typography>
-        </AccordionDetails>
       </Accordion>
       <Accordion
         square
-        expanded={expanded === "panel2"}
-        onChange={handleChange("panel2")}
+        expanded={expanded === "allRequests"}
+        onChange={handleChange("allRequests")}
       >
         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
           <Typography>
             {" "}
-            {expanded === "panel2" ? (
+            {expanded === "allRequests" ? (
               <div className="tagClicked">
-                {" "}
-                <img src={requestsClicked} alt="" className="drawericons" />
-                Requests{" "}
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        {" "}
+                        <img
+                          src={requestsClicked}
+                          alt=""
+                          className="drawericons"
+                        />
+                      </td>
+                      <td>Requests</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             ) : (
               <div className="tagUnclicked">
                 {" "}
-                <img
-                  src={requestsUnclicked}
-                  alt=""
-                  className="drawericons"
-                />{" "}
-                Requests{" "}
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        {" "}
+                        <img
+                          src={requestsUnclicked}
+                          alt=""
+                          className="drawericons"
+                        />
+                      </td>
+                      <td>Requests</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             )}
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <div>Pending</div>
-            <div>Confirmed</div>
-            <div>All Requests</div>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <img src={active} alt="" className="requestsicons" />
+                  </td>
+                  {expanded === "pendingRequests" ? (
+                    <td className="tagClicked">Pending</td>
+                  ) : (
+                    <td className="tagUnclicked">Pending</td>
+                  )}
+                </tr>
+                <tr>
+                  <td>
+                    <img src={completed} alt="" className="requestsicons" />
+                  </td>
+                  {expanded === "confirmedRequests" ? (
+                    <td className="tagClicked">Confirmed</td>
+                  ) : (
+                    <td className="tagUnclicked">Confirmed</td>
+                  )}
+                </tr>
+                <tr>
+                  <td></td>
+                  {expanded === "allRequests" ? (
+                    <td className="tagClicked">All Requests</td>
+                  ) : (
+                    <td className="tagUnclicked">All Requests</td>
+                  )}
+                </tr>
+              </tbody>
+            </table>
           </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion
         square
-        expanded={expanded === "panel3"}
-        onChange={handleChange("panel3")}
+        expanded={expanded === "users"}
+        onChange={handleChange("users")}
       >
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
           <Typography>
             {" "}
-            {expanded === "panel3" ? (
+            {expanded === "users" ? (
               <div className="tagClicked">
-                {" "}
-                <img src={users} alt="" className="drawericons" />
-                Users{" "}
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        {" "}
+                        <img
+                          src={usersClicked}
+                          alt=""
+                          className="drawericons"
+                        />
+                      </td>
+                      <td>Users</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             ) : (
               <div className="tagUnclicked">
-                <img src={users} alt="" className="drawericons" /> Users{" "}
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        {" "}
+                        <img
+                          src={usersUnclicked}
+                          alt=""
+                          className="drawericons"
+                        />
+                      </td>
+                      <td>Users</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             )}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>3</Typography>
-        </AccordionDetails>
       </Accordion>
       <Accordion
         square
-        expanded={expanded === "panel4"}
-        onChange={handleChange("panel4")}
+        expanded={expanded === "boxes"}
+        onChange={handleChange("boxes")}
       >
         <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
           <Typography>
             {" "}
-            {expanded === "panel4" ? (
+            {expanded === "boxes" ? (
               <div className="tagClicked">
-                <img src={boxes} alt="" className="drawericons" /> Boxes{" "}
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        {" "}
+                        <img
+                          src={boxesClicked}
+                          alt=""
+                          className="drawericons"
+                        />
+                      </td>
+                      <td>Boxes</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             ) : (
               <div className="tagUnclicked">
-                <img src={boxes} alt="" className="drawericons" /> Boxes{" "}
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        {" "}
+                        <img
+                          src={boxesUnclicked}
+                          alt=""
+                          className="drawericons"
+                        />
+                      </td>
+                      <td>Boxes</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             )}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>4</Typography>
-        </AccordionDetails>
       </Accordion>
 
       <Accordion
         square
-        expanded={expanded === "panel5"}
-        onChange={handleChange("panel5")}
+        expanded={expanded === "orders"}
+        onChange={handleChange("orders")}
       >
         <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
           <Typography>
             {" "}
-            {expanded === "panel5" ? (
+            {expanded === "orders" ? (
               <div className="tagClicked">
                 {" "}
-                <img src={orders} alt="" className="drawericons" /> Orders{" "}
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        {" "}
+                        <img
+                          src={ordersClicked}
+                          alt=""
+                          className="drawericons"
+                        />
+                      </td>
+                      <td>Orders</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             ) : (
               <div className="tagUnclicked">
                 {" "}
-                <img src={orders} alt="" className="drawericons" /> Not Orders{" "}
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        {" "}
+                        <img
+                          src={ordersUnclicked}
+                          alt=""
+                          className="drawericons"
+                        />
+                      </td>
+                      <td>Orders</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </Typography>
+        </AccordionSummary>
+      </Accordion>
+      <Accordion
+        square
+        expanded={expanded === "settings"}
+        onChange={handleChange("settings")}
+      >
+        <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
+          <Typography>
+            {" "}
+            {expanded === "settings" ? (
+              <div className="tagClicked">
+                {" "}
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        {" "}
+                        <img
+                          src={settingsClicked}
+                          alt=""
+                          className="drawericons"
+                        />
+                      </td>
+                      <td>Settings</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="tagUnclicked">
+                {" "}
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        {" "}
+                        <img
+                          src={settingsUnclicked}
+                          alt=""
+                          className="drawericons"
+                        />
+                      </td>
+                      <td>Settings</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             )}
           </Typography>

@@ -5,38 +5,38 @@ import "../StyleSheets/grid.css";
 const columns = [
   {
     field: "id",
-    headerName: "ID",
+    headerName: "ID number",
     sortable: false,
     type: "number",
-    width: 230,
+    width: 140,
   },
   {
     field: "name",
     headerName: "Name",
     sortable: false,
     type: "string",
-    width: 230,
+    width: 165,
   },
   {
     field: "status",
     headerName: "Status",
     sortable: false,
     type: "string",
-    width: 230,
+    width: "17vw",
   },
   {
     field: "supplier",
     headerName: "Supplier",
     type: "string",
     sortable: false,
-    width: 230,
+    width: "12vw",
   },
   {
     field: "date",
     headerName: "Date",
     type: "dateTime",
     sortable: false,
-    width: 230,
+    width: "17vw",
   },
   // {
   //     field: 'fullName',
@@ -277,36 +277,40 @@ const hi = orders.map((order, index) => {
   };
   rows.push(data);
 });
+
 export default function DataGridData() {
   return (
-    <div
-      style={{
-        height: 600,
-        width: "100%",
-      }}
-    >
-      <DataGrid
-        className="adminfont"
-        sortModel={[
-          {
-            field: "date",
-            sort: "desc",
-          },
-        ]}
-        filterModel={{
-          items: [
-            {
-              columnField: "id",
-              operatorValue: ">",
-              value: "",
-            },
-          ],
+    <div>
+      <div
+        style={{
+          height: 530,
+          width: "75vw",
         }}
-        rows={rows}
-        columns={columns}
-        pageSize={8}
-        checkboxSelection
-      />
+      >
+        <DataGrid
+          className="adminfont"
+          sortModel={[
+            {
+              field: "date",
+              sort: "desc",
+            },
+          ]}
+          filterModel={{
+            items: [
+              {
+                columnField: "id",
+                operatorValue: ">",
+                value: "",
+              },
+            ],
+          }}
+          rows={rows}
+          columns={columns}
+          pageSize={8}
+          checkboxSelection
+          disableExtendRowFullWidth={false}
+        />
+      </div>
     </div>
   );
 }

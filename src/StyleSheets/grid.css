@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+tr,
+td {
+  padding: 0 !important;
+  margin: 0 !important;
+}
 
+.removeDefaultVerticalAlignment {
+  vertical-align: top !important;
+}
 .MuiDataGrid-menuIcon,
 .MuiDataGrid-sortIcon,
 .MuiSvgIcon-fontSizeSmall {
@@ -8,6 +16,7 @@
 
 .adminfont {
   font-family: "Poppins" !important;
+  font-size: max(12px, 1vw) !important;
 }
 
 .MuiCheckbox-root {
@@ -45,4 +54,7 @@
 .MuiDataGrid-cellLeft,
 .MuiDataGrid-colCellTitle {
   color: #707683;
+}
+
+.MuiDataGrid-root .MuiDataGrid-footer .MuiDataGrid-selectedRowCount {
 }

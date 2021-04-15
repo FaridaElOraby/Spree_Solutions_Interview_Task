@@ -23,7 +23,7 @@ export default function Profile() {
               {" "}
               <Avatar alt="Remy Sharp" src={avatarpic} />
             </td>
-            <td>
+            <td className="pcOnly">
               {" "}
               <table>
                 <tbody>
@@ -39,13 +39,13 @@ export default function Profile() {
               </table>{" "}
             </td>
           </tr>
-          <tr>
+          <tr className="mobileOnly">
             {" "}
             <td>Ahmed Reda</td>
           </tr>
           <tr>
             {" "}
-            <td>#1253724</td>
+            <td className="mobileOnly">#1253724</td>
           </tr>
         </tbody>
       </table>
