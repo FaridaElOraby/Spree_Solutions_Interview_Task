@@ -27,6 +27,7 @@ import settingsClicked from "../Images/settingsClicked.png";
 import active from "../Images/active_circle.png";
 import completed from "../Images/completed_circle.png";
 
+//predefined Styling of Material UI
 const Accordion = withStyles({
   root: {
     border: "none",
@@ -44,32 +45,14 @@ const Accordion = withStyles({
   expanded: {},
 })(MuiAccordion);
 
-const AccordionSummary = withStyles({
-  //   root: {
-  //     backgroundColor: "rgba(0, 0, 0, .03)",
-  //     borderBottom: "1px solid rgba(0, 0, 0, .125)",
-  //     marginBottom: -1,
-  //     minHeight: 56,
-  //     "&$expanded": {
-  //       minHeight: 56,
-  //     },
-  //   },
-  //   content: {
-  //     "&$expanded": {
-  //       margin: "12px 0",
-  //     },
-  //   },
-  //   expanded: {},
-})(MuiAccordionSummary);
+const AccordionSummary = withStyles({})(MuiAccordionSummary);
 
-const AccordionDetails = withStyles((theme) => ({
-  //   root: {
-  //     padding: theme.spacing(2),
-  //   },
-}))(MuiAccordionDetails);
+const AccordionDetails = withStyles((theme) => ({}))(MuiAccordionDetails);
 
-export default function CustomizedAccordions() {
-  const [expanded, setExpanded] = React.useState("");
+export default function CustomizedAccordions(props) {
+  //selected tag
+  const expanded = props.expanded;
+  const setExpanded = props.setExpanded;
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -77,6 +60,7 @@ export default function CustomizedAccordions() {
 
   return (
     <div className="admindrawer">
+      {/* first tag with logic of selection*/}
       <Accordion
         square
         expanded={expanded === "dashboard"}
@@ -90,7 +74,6 @@ export default function CustomizedAccordions() {
                   <tbody>
                     <tr>
                       <td>
-                        {" "}
                         <img
                           src={dashboardClicked}
                           alt=""
@@ -104,12 +87,10 @@ export default function CustomizedAccordions() {
               </div>
             ) : (
               <div className="tagUnclicked">
-                {" "}
                 <table>
                   <tbody>
                     <tr>
                       <td>
-                        {" "}
                         <img
                           src={dashboardUnclicked}
                           alt=""
@@ -125,21 +106,26 @@ export default function CustomizedAccordions() {
           </Typography>
         </AccordionSummary>
       </Accordion>
+      {/* second tag with logic of selection*/}
       <Accordion
         square
-        expanded={expanded === "allRequests"}
+        expanded={
+          expanded === "allRequests" ||
+          expanded === "pendingRequests" ||
+          expanded === "confirmedRequests"
+        }
         onChange={handleChange("allRequests")}
       >
         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
           <Typography>
-            {" "}
-            {expanded === "allRequests" ? (
+            {expanded === "allRequests" ||
+            expanded === "pendingRequests" ||
+            expanded === "confirmedRequests" ? (
               <div className="tagClicked">
                 <table>
                   <tbody>
                     <tr>
                       <td>
-                        {" "}
                         <img
                           src={requestsClicked}
                           alt=""
@@ -153,12 +139,10 @@ export default function CustomizedAccordions() {
               </div>
             ) : (
               <div className="tagUnclicked">
-                {" "}
                 <table>
                   <tbody>
                     <tr>
                       <td>
-                        {" "}
                         <img
                           src={requestsUnclicked}
                           alt=""
@@ -177,7 +161,10 @@ export default function CustomizedAccordions() {
           <Typography>
             <table>
               <tbody>
-                <tr>
+                <tr
+                  className="clickableDrawer"
+                  onClick={() => setExpanded("pendingRequests")}
+                >
                   <td>
                     <img src={active} alt="" className="requestsicons" />
                   </td>
@@ -187,7 +174,10 @@ export default function CustomizedAccordions() {
                     <td className="tagUnclicked">Pending</td>
                   )}
                 </tr>
-                <tr>
+                <tr
+                  className="clickableDrawer"
+                  onClick={() => setExpanded("confirmedRequests")}
+                >
                   <td>
                     <img src={completed} alt="" className="requestsicons" />
                   </td>
@@ -197,7 +187,10 @@ export default function CustomizedAccordions() {
                     <td className="tagUnclicked">Confirmed</td>
                   )}
                 </tr>
-                <tr>
+                <tr
+                  className="clickableDrawer"
+                  onClick={() => setExpanded("allRequests")}
+                >
                   <td></td>
                   {expanded === "allRequests" ? (
                     <td className="tagClicked">All Requests</td>
@@ -210,6 +203,7 @@ export default function CustomizedAccordions() {
           </Typography>
         </AccordionDetails>
       </Accordion>
+      {/* third tag with logic of selection*/}
       <Accordion
         square
         expanded={expanded === "users"}
@@ -217,14 +211,12 @@ export default function CustomizedAccordions() {
       >
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
           <Typography>
-            {" "}
             {expanded === "users" ? (
               <div className="tagClicked">
                 <table>
                   <tbody>
                     <tr>
                       <td>
-                        {" "}
                         <img
                           src={usersClicked}
                           alt=""
@@ -242,7 +234,6 @@ export default function CustomizedAccordions() {
                   <tbody>
                     <tr>
                       <td>
-                        {" "}
                         <img
                           src={usersUnclicked}
                           alt=""
@@ -258,6 +249,7 @@ export default function CustomizedAccordions() {
           </Typography>
         </AccordionSummary>
       </Accordion>
+      {/* fourth tag with logic of selection*/}
       <Accordion
         square
         expanded={expanded === "boxes"}
@@ -265,14 +257,12 @@ export default function CustomizedAccordions() {
       >
         <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
           <Typography>
-            {" "}
             {expanded === "boxes" ? (
               <div className="tagClicked">
                 <table>
                   <tbody>
                     <tr>
                       <td>
-                        {" "}
                         <img
                           src={boxesClicked}
                           alt=""
@@ -290,7 +280,6 @@ export default function CustomizedAccordions() {
                   <tbody>
                     <tr>
                       <td>
-                        {" "}
                         <img
                           src={boxesUnclicked}
                           alt=""
@@ -306,7 +295,7 @@ export default function CustomizedAccordions() {
           </Typography>
         </AccordionSummary>
       </Accordion>
-
+      {/* fifth tag with logic of selection*/}
       <Accordion
         square
         expanded={expanded === "orders"}
@@ -314,15 +303,12 @@ export default function CustomizedAccordions() {
       >
         <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
           <Typography>
-            {" "}
             {expanded === "orders" ? (
               <div className="tagClicked">
-                {" "}
                 <table>
                   <tbody>
                     <tr>
                       <td>
-                        {" "}
                         <img
                           src={ordersClicked}
                           alt=""
@@ -336,12 +322,10 @@ export default function CustomizedAccordions() {
               </div>
             ) : (
               <div className="tagUnclicked">
-                {" "}
                 <table>
                   <tbody>
                     <tr>
                       <td>
-                        {" "}
                         <img
                           src={ordersUnclicked}
                           alt=""
@@ -357,6 +341,7 @@ export default function CustomizedAccordions() {
           </Typography>
         </AccordionSummary>
       </Accordion>
+      {/* sixth tag with logic of selection*/}
       <Accordion
         square
         expanded={expanded === "settings"}
@@ -364,15 +349,12 @@ export default function CustomizedAccordions() {
       >
         <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
           <Typography>
-            {" "}
             {expanded === "settings" ? (
               <div className="tagClicked">
-                {" "}
                 <table>
                   <tbody>
                     <tr>
                       <td>
-                        {" "}
                         <img
                           src={settingsClicked}
                           alt=""
@@ -386,12 +368,10 @@ export default function CustomizedAccordions() {
               </div>
             ) : (
               <div className="tagUnclicked">
-                {" "}
                 <table>
                   <tbody>
                     <tr>
                       <td>
-                        {" "}
                         <img
                           src={settingsUnclicked}
                           alt=""

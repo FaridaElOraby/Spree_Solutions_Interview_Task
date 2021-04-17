@@ -1,306 +1,192 @@
-import React from "react";
+/* eslint-disable array-callback-return */
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import "../StyleSheets/grid.css";
+import axios from "axios";
 
-const columns = [
-  {
-    field: "id",
-    headerName: "ID number",
-    sortable: false,
-    type: "number",
-    width: 140,
-  },
-  {
-    field: "name",
-    headerName: "Name",
-    sortable: false,
-    type: "string",
-    width: 165,
-  },
-  {
-    field: "status",
-    headerName: "Status",
-    sortable: false,
-    type: "string",
-    width: "17vw",
-  },
-  {
-    field: "supplier",
-    headerName: "Supplier",
-    type: "string",
-    sortable: false,
-    width: "12vw",
-  },
-  {
-    field: "date",
-    headerName: "Date",
-    type: "dateTime",
-    sortable: false,
-    width: "17vw",
-  },
-  // {
-  //     field: 'fullName',
-  //     headerName: 'Full name',
-  //     description: 'This column has a value getter and is not sortable.',
-  //     sortable: false,
-  //     width: 160,
-  //     valueGetter: (params) => `${
-  //         params.getValue('firstName') || ''
-  //     } ${
-  //         params.getValue('lastName') || ''
-  //     }`
-  // },
-];
+export default function DataGridData(props) {
+  const [orders, setOrders] = useState([]); //State of table data
+  const filtered = props.filtered;
+  const sorted = props.sorted;
+  const expanded = props.expanded;
+  const searchValue = props.searchValue;
 
-const rows = [];
+  const [supplierFiltered, setSupplierFiltered] = useState("");
+  const [statusFiltered, setStatusFiltered] = useState("");
 
-const orders = [
-  {
-    created_at: "2021-04-10T18:49:55.996042",
-    customer: {
-      email: "test@test.com",
-      fname: "John",
-      gender: "M",
-      lname: "Doe",
-    },
-    id: 1,
-    status: "pending_confirmation",
-    supplier: "Amazon",
-    total: 2000,
-  },
+  const [sortCol, setSortCol] = useState("date");
+  const [sortOrder, setSortOrder] = useState("desc");
 
-  {
-    created_at: "2021-02-10T18:49:55.996042",
-    customer: {
-      email: "test2@test.com",
-      fname: "Ahmed",
-      gender: "M",
-      lname: "Zaky",
-    },
-    id: 21,
-    status: "confirmed",
-    supplier: "Macy's",
-    total: 3000,
-  },
+  if (supplierFiltered) console.log("supplierFiltered");
+  if (statusFiltered) console.log("statusFiltered");
 
-  {
-    created_at: "2021-02-11T18:49:55.996042",
-    customer: {
-      email: "test3@gmail.com",
-      fname: "Emily",
-      gender: "F",
-      lname: "Green",
+  //Columns of table with their properties
+  const columns = [
+    {
+      field: "id",
+      headerName: "ID number",
+      sortable: false,
+      type: "number",
+      width: 140,
     },
-    id: 3,
-    status: "pending_confirmation",
-    supplier: "Ebay",
-    total: 5500,
-  },
+    {
+      field: "name",
+      headerName: "Name",
+      sortable: false,
+      type: "string",
+      width: 165,
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      sortable: false,
+      type: "string",
+      width: "17vw",
+    },
+    {
+      field: "supplier",
+      headerName: "Supplier",
+      type: "string",
+      sortable: false,
+      width: "12vw",
+    },
+    {
+      field: "date",
+      headerName: "Date",
+      type: "dateTime",
+      sortable: false,
+      width: "25vw",
+    },
+  ];
 
-  {
-    created_at: "2021-02-13T13:00:55.996042",
-    customer: {
-      email: "test4@gmail.com",
-      fname: "Jack",
-      gender: "M",
-      lname: "Green",
-    },
-    id: 4,
-    status: "pending_confirmation",
-    supplier: "Amazon",
-    total: 5900,
-  },
-  {
-    created_at: "2021-02-14T13:00:55.996042",
-    customer: {
-      email: "test5@gmail.com",
-      fname: "Islam",
-      gender: "M",
-      lname: "Sayed",
-    },
-    id: 5,
-    status: "confirmed",
-    supplier: "Amazon",
-    total: 3900,
-  },
-  {
-    created_at: "2021-03-15T13:00:55.996042",
-    customer: {
-      email: "test6@gmail.com",
-      fname: "Mai",
-      gender: "F",
-      lname: "Essam",
-    },
-    id: 6,
-    status: "pending_confirmation",
-    supplier: "Amazon",
-    total: 3050,
-  },
-  {
-    created_at: "2021-01-10T12:00:55.996042",
-    customer: {
-      email: "test7@gmail.com",
-      fname: "Elizabeth",
-      gender: "F",
-      lname: "Banks",
-    },
-    id: 7,
-    status: "confirmed",
-    supplier: "Macy's",
-    total: 8000,
-  },
-  {
-    created_at: "2021-01-01T12:30:55.996042",
-    customer: {
-      email: "test8@gmail.com",
-      fname: "Tom",
-      gender: "M",
-      lname: "Cruise",
-    },
-    id: 8,
-    status: "confirmed",
-    supplier: "Amazon",
-    total: 11000,
-  },
-  {
-    created_at: "2020-12-01T01:35:55.996042",
-    customer: {
-      email: "test9@gmail.com",
-      fname: "Emma",
-      gender: "F",
-      lname: "Stone",
-    },
-    id: 9,
-    status: "pending_confirmation",
-    supplier: "Macy's",
-    total: 21500,
-  },
-  {
-    created_at: "2021-01-02T19:38:55.996042",
-    customer: {
-      email: "test10@gmail.com",
-      fname: "Jennifer",
-      gender: "F",
-      lname: "Aniston",
-    },
-    id: 10,
-    status: "confirmed",
-    supplier: "Ebay",
-    total: 29500,
-  },
-  {
-    created_at: "2021-02-14T13:00:55.996042",
-    customer: {
-      email: "test5@gmail.com",
-      fname: "Islam",
-      gender: "M",
-      lname: "Sayed",
-    },
-    id: 11,
-    status: "confirmed",
-    supplier: "Amazon",
-    total: 3900,
-  },
-  {
-    created_at: "2021-03-15T13:00:55.996042",
-    customer: {
-      email: "test6@gmail.com",
-      fname: "Mai",
-      gender: "F",
-      lname: "Essam",
-    },
-    id: 12,
-    status: "pending_confirmation",
-    supplier: "Amazon",
-    total: 3050,
-  },
-  {
-    created_at: "2021-01-10T12:00:55.996042",
-    customer: {
-      email: "test7@gmail.com",
-      fname: "Elizabeth",
-      gender: "F",
-      lname: "Banks",
-    },
-    id: 13,
-    status: "confirmed",
-    supplier: "Macy's",
-    total: 8000,
-  },
-  {
-    created_at: "2021-01-01T12:30:55.996042",
-    customer: {
-      email: "test8@gmail.com",
-      fname: "Tom",
-      gender: "M",
-      lname: "Cruise",
-    },
-    id: 14,
-    status: "confirmed",
-    supplier: "Amazon",
-    total: 11000,
-  },
-  {
-    created_at: "2020-12-01T01:35:55.996042",
-    customer: {
-      email: "test9@gmail.com",
-      fname: "Emma",
-      gender: "F",
-      lname: "Stone",
-    },
-    id: 15,
-    status: "pending_confirmation",
-    supplier: "Macy's",
-    total: 21500,
-  },
-  {
-    created_at: "2021-01-02T19:38:55.996042",
-    customer: {
-      email: "test10@gmail.com",
-      fname: "Jennifer",
-      gender: "F",
-      lname: "Aniston",
-    },
-    id: 16,
-    status: "confirmed",
-    supplier: "Ebay",
-    total: 29500,
-  },
-];
-const hi = orders.map((order, index) => {
-  let data = {
-    id: "#" + order.id,
-    name: order.customer.fname + " " + order.customer.lname,
-    status: order.status === "confirmed" ? "Confirmed" : "Pending Confirmation",
-    supplier: order.supplier,
-    date: new Date(order.created_at),
-  };
-  rows.push(data);
-});
+  //Rows of data will be populated
+  const [rows, setRows] = useState([]);
 
-export default function DataGridData() {
+  useEffect(() => {
+    //Called Everytime the filter changes
+    if (sorted === "Name A-Z") {
+      setSortCol("name");
+      setSortOrder("asc");
+    } else if (sorted === "Status A-Z") {
+      setSortCol("status");
+      setSortOrder("asc");
+    } else if (sorted === "Supplier A-Z") {
+      setSortCol("supplier");
+      setSortOrder("asc");
+    } else {
+      setSortCol("date");
+      setSortOrder("desc");
+    }
+  }, [sorted]);
+
+  useEffect(() => {
+    //Called Everytime the filter changes
+    if (filtered === "No Filter") {
+      setSupplierFiltered("");
+    } else if (filtered === "Supplier: Amazon") {
+      setSupplierFiltered("Amazon");
+    } else if (filtered === "Supplier: Ebay") {
+      setSupplierFiltered("Ebay");
+    } else if (filtered === "Supplier: Macy's") {
+      setSupplierFiltered("Macy's");
+    } else if (filtered === "Supplier: Craiglist") {
+      setSupplierFiltered("Craiglist");
+    }
+  }, [filtered]);
+
+  useEffect(() => {
+    //Called Everytime the sidebar changes
+    console.log(expanded);
+    if (expanded === "pendingRequests") {
+      setStatusFiltered("Pending Confirmation");
+    } else if (expanded === "confirmedRequests") {
+      setStatusFiltered("Confirmed");
+    } else {
+      setStatusFiltered("");
+    }
+  }, [expanded]);
+
+  useEffect(() => {
+    //Axios Call fetch data once page is rendered or Filter on Status or SupplierChanged
+    let newRows = [];
+    axios({
+      method: "get",
+      url: `https://o53hpo7bf9.execute-api.us-west-2.amazonaws.com/dev/orders`,
+    })
+      .then((res) => {
+        setOrders(res.data.orders);
+
+        res.data.orders.map((order, index) => {
+          let data = {
+            id: "#" + order.id,
+            name: order.customer.fname + " " + order.customer.lname,
+            status:
+              order.status === "confirmed"
+                ? "Confirmed"
+                : "Pending Confirmation",
+            supplier: order.supplier,
+            date: new Date(order.created_at),
+          };
+
+          newRows.push(data);
+        });
+        setRows(newRows);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    //Axios Call fetch data once page is rendered or Filter on Status or SupplierChanged
+    let newRows = [];
+    orders.map((order, index) => {
+      let data = {
+        id: "#" + order.id,
+        name: order.customer.fname + " " + order.customer.lname,
+        status:
+          order.status === "confirmed" ? "Confirmed" : "Pending Confirmation",
+        supplier: order.supplier,
+        date: new Date(order.created_at),
+      };
+      if (!supplierFiltered || supplierFiltered === data.supplier) {
+        if (!statusFiltered || statusFiltered === data.status) {
+          newRows.push(data);
+        }
+      }
+    });
+    setRows(newRows);
+  }, [supplierFiltered, statusFiltered, orders]);
+
+  console.log(rows);
   return (
     <div>
+      {/*width and height of table */}
       <div
         style={{
           height: 530,
           width: "75vw",
         }}
+        className="whiteBackground"
       >
+        {/* DataGrid -> 
+        sortModel: sorting field and order
+        filterModel: filter field and property
+        pageSize: pagination
+        */}
         <DataGrid
           className="adminfont"
           sortModel={[
             {
-              field: "date",
-              sort: "desc",
+              field: sortCol,
+              sort: sortOrder,
             },
           ]}
           filterModel={{
             items: [
               {
-                columnField: "id",
-                operatorValue: ">",
-                value: "",
+                columnField: "name",
+                operatorValue: "contains",
+                value: searchValue,
               },
             ],
           }}

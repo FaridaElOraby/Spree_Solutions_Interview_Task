@@ -1,60 +1,91 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+/* import front from google to match design */
+
 tr,
 td {
+  /* removing predefined property of table row and table coloumn */
   padding: 0 !important;
   margin: 0 !important;
+  text-align: left !important;
 }
 
 .removeDefaultVerticalAlignment {
+  /* removing predefined property of table row and table coloumn */
   vertical-align: top !important;
 }
 .MuiDataGrid-menuIcon,
 .MuiDataGrid-sortIcon,
-.MuiSvgIcon-fontSizeSmall {
+.MuiSvgIcon-fontSizeSmall,
+.MuiDataGrid-root .MuiDataGrid-iconSeparator {
+  /* removing predefined icons from display*/
   display: none !important;
 }
 
 .adminfont {
+  /* font for table data*/
   font-family: "Poppins" !important;
   font-size: max(12px, 1vw) !important;
 }
 
 .MuiCheckbox-root {
+  /* color of checkbox border*/
   color: #c2cfe0 !important;
 }
 
 .MuiCheckbox-colorPrimary.Mui-checked,
 .PrivateSwitchBase-input-7 {
+  /* color of checkbox selected*/
   color: #0a47c4 !important;
 }
 
 .MuiDataGrid-row {
+  /* cursor change to pointer to indicate clickable content*/
   cursor: pointer;
 }
 
 .MuiDataGrid-cell:hover,
 .MuiDataGrid-cell:active,
 .MuiDataGrid-cell:focus {
+  /* removing predefined outline around table data*/
   outline: none !important;
 }
 
 .MuiDataGrid-row.Mui-selected {
+  /*Change predefined color of selected row */
   background-color: #f2f9ff !important;
 }
 
 .MuiDataGrid-cellRight {
+  /*Change predefined text-align to match design */
   text-align: left !important;
   color: #323c47;
+  font-weight: bold !important;
 }
 
 .MuiDataGrid-root .MuiDataGrid-colCellRight .MuiDataGrid-colCellTitleContainer {
+  /*Change predefined content-align to match design */
   justify-content: flex-start !important;
 }
 
 .MuiDataGrid-cellLeft,
 .MuiDataGrid-colCellTitle {
+  /*Change predefined color of cell title to match design */
   color: #707683;
 }
 
-.MuiDataGrid-root .MuiDataGrid-footer .MuiDataGrid-selectedRowCount {
+.PaddingDataGrid {
+  /*padding of table with rest of the page */
+  padding-left: 4vw;
+}
+
+.greyBackground {
+  background-color: #f5f6f8;
+}
+
+.whiteBackground {
+  background-color: #ffffff;
+}
+
+.MuiDataGrid-colCellTitle {
+  font-weight: bold !important;
 }

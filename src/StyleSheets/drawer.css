@@ -1,59 +1,106 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
 .admindrawer {
+  /* sidebar width and font */
   width: 18vw;
   font-family: "Poppins" !important;
-  font-size: 13px !important;
+  font-size: max(12px, 0.9vw) !important;
 }
 
 .drawericons {
-  width: 24px;
-  margin-right: 5px;
+  /* sidebar icons width and margins */
+  width: 20px;
+  margin-right: 1vw;
+  margin-left: 0.45vw;
 }
 
 .tagUnclicked {
-  color: black;
+  /* sidebar tag if not selected */
+  color: #334d6e;
   font-family: "Poppins" !important;
-  font-size: 13px !important;
+  font-size: max(11.5px, 0.9vw) !important;
   text-align: start !important;
+  font-weight: bold !important;
 }
 
 .tagClicked {
+  /* sidebar tag if selected */
   color: #0a47c4;
   font-family: "Poppins" !important;
-  font-size: 13px !important;
+  font-size: max(11.5px, 0.9vw) !important;
   text-align: start !important;
+  font-weight: bold !important;
 }
 
 .adminlogo {
+  /* sidebar logo width and margin*/
   width: 33px;
+  margin-top: 1.2vw;
+  margin-left: 1.2vw;
+  margin-bottom: 1vw;
+}
+
+.avatarpic {
+  /* sidebar avatar margin*/
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  margin-left: 1.7vw;
 }
 
 .adminprofiletable {
+  /* sidebar user Info width and font*/
   width: 18vw;
   font-family: "Poppins" !important;
 }
-/* 
-.pcOnly {
-  display: none;
-} */
 
-.mobileOnly {
-  display: none;
-}
-
-.MuiAccordionSummary-root.Mui-expanded {
+.MuiAccordionSummary-root.Mui-expanded,
+.MuiAccordionSummary-root {
+  /* sidebar tag accordion change predefined property*/
   min-height: unset !important;
 }
 .MuiAccordionSummary-content.Mui-expanded {
+  /* sidebar tag accordion change predefined property*/
   margin: 12px 0px !important;
 }
 
 .requestsicons {
+  /* sidebar requests filter icons*/
   width: 8px;
-  margin-right: 5px;
+  margin-right: 0.5vw;
+  margin-left: 1vw;
 }
 
 .MuiAccordionDetails-root {
+  /* sidebar tag accordion change predefined property*/
   padding: 0px 40px 16px !important;
+}
+
+.drawerAll {
+  /* shadow of sidebar*/
+  box-shadow: rgb(0 0 0 / 20%) 3px 5px 3px -1px,
+    rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
+  height: 100vh;
+}
+
+.drawerName {
+  /* User Name beside avatar*/
+  color: #192a3e;
+  font-family: "Poppins" !important;
+  font-size: max(13px, 1vw) !important;
+  font-weight: bold !important;
+  padding-right: 3.5vw;
+}
+
+.drawerID {
+  /* User ID beside avatar*/
+  color: #90a0b7;
+  font-family: "Poppins" !important;
+  font-size: max(11px, 0.8vw) !important;
+  font-weight: bold !important;
+  padding-right: 3.5vw;
+}
+
+.clickableDrawer {
+  /* Change Cursor to indicate clickable*/
+  cursor: pointer;
 }
