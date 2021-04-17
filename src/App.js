@@ -1,11 +1,11 @@
-import "./App.css";
-import AdminPage from "./Pages/AdminPage";
+import './App.css'
+import AdminPage from './Pages/adminPage'
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <AdminPage />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
