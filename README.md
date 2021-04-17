@@ -1,7 +1,3 @@
-# Deployed
-
-Page deployed and can be accessed through https://
-
 # Features
 
 - Display data
@@ -13,6 +9,7 @@ Page deployed and can be accessed through https://
 - Pagination for every 8 records
 - Checked Records don't change accross pagination, filter, sorting, searching unless unselected
 - Can enforce filtering by supplier, filtering by status, searching and sorting on dataset simultaneously
+- Snackbar message appears when sort ot filter through the dropdown is enforced
 
 # Notes
 
